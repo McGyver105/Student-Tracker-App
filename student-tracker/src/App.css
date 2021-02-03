@@ -1,7 +1,58 @@
+body {
+  background-color: rgb(40 131 140 / 60%);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
 .App {
   text-align: center;
 }
 
 .nyanCat {
   width: 40px;
+}
+
+.block {
+  display: flex;
+  justify-content: space-around;
+}
+
+.block-list-container {
+  width: 23%;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  border: 2px black solid;
+  border-radius: 12px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.blockListHeader {
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+li {
+  padding: 5px 0px;
+}
+
+.all-students-container {
+  width: 23%;
+}
+
+.grad-list-container {
+  width: 23%;
+}
+
+.student-emoji {
+  margin-left: 10px;
+}
+
+.grad-emoji {
+  margin-left: 10px;
 }

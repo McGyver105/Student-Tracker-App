@@ -20,9 +20,9 @@ class StudentList extends Component {
         return (
             <>
             <h2>All students on course</h2>
-            <ul>
+            <ul className='all-students-container'>
                 {this.state.students.map((student) => {
-                    return <li key={student._id}>{student.name}</li>
+                    return <li key={student._id}>{student.name}<span className='student-emoji'>🤓</span></li>
                 })}
             </ul>
             </>
