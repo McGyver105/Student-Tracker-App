@@ -33,6 +33,7 @@ class StudentsByBlock extends Component {
             </div>
         );
     }
+
 }
 
 export default StudentsByBlock;

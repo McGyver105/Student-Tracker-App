@@ -18,11 +18,14 @@ class StudentList extends Component {
             return <img className='nyanCat' src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif?w=700" alt="nyan cat"/>
         }
         return (
+            <>
+            <h2>All students on course</h2>
             <ul>
                 {this.state.students.map((student) => {
                     return <li key={student._id}>{student.name}</li>
                 })}
             </ul>
+            </>
         );
     }
 }

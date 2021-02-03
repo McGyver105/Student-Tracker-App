@@ -3,6 +3,7 @@ export const fetchStudents = () => {
     .then((res) => res.json())
 }
 
-// export const fetchStudentsByBlock = () => {
-//     return fetch ()
-// }
+export const fetchGraduates = () => {
+    return fetch ('https://nc-student-tracker.herokuapp.com/api/students?graduated=true')
+    .then((res) => res.json())
+}
