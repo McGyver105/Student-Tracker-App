@@ -5,7 +5,8 @@ class StudentList extends Component {
     state={
         students: null,
         postStudentData : {name: '', startingCohort: ''},
-        newStudent: {name: null, id: null, currentBlock: null}
+        newStudent: {name: null, id: null, currentBlock: null},
+        submitted: false,
     };
 
     componentDidMount() {
@@ -13,6 +14,18 @@ class StudentList extends Component {
         .then((res) => this.setState(() => {
             return {...res}
         }))
+    }
+
+    componentDidUpdate() {
+        if (this.state.submitted) {
+            console.log('updating')
+            api.fetchStudents()
+            .then((res) => {
+                this.setState(() => {
+                  return {...res, submitted: false}  
+                })
+            })
+        }
     }
 
     render() {
@@ -71,7 +84,7 @@ class StudentList extends Component {
         })
         .then(({student:{name, _id, currentBlock}}) => {
             this.setState(() => {
-                return {'newStudent': {'name': name, 'id': _id, 'currentBlock': currentBlock}}
+                return {'newStudent': {'name': name, 'id': _id, 'currentBlock': currentBlock}, submitted: true}
             })
         })
     }
