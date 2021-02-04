@@ -119,4 +119,7 @@ li {
   .buttonsContainer {
     padding-top: 10px;
   }
+  .studentlistcontainer {
+    display: flex;
+  }
 }
