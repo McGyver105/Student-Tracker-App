@@ -5,8 +5,10 @@ class StudentList extends Component {
     state={
         students: null,
         postStudentData : {name: '', startingCohort: ''},
-        newStudent: {name: null, id: null, currentBlock: null},
+        newStudent: { name: null, id: null, currentBlock: null },
         submitted: false,
+        deleteId: '',
+        deleted: false
     };
 
     componentDidMount() {
@@ -28,8 +30,8 @@ class StudentList extends Component {
         }
     }
 
-    render() {
-        console.log(this.state.postStudentData)
+    render () {
+        console.log(this.state.deleteId)
         if (!this.state.students) {
             return <img className='nyanCat' src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif?w=700" alt="nyan cat"/>
         }
@@ -56,7 +58,15 @@ class StudentList extends Component {
                     </label>
                     <button>Submit</button>
                     {this.state.newStudent.name ? <p>{`${this.state.newStudent.name} created with an id of ${this.state.newStudent.id} in the ${this.convertBlock(this.state.newStudent.currentBlock)} block`}</p> : <> </>}
-                </form>
+                    </form>
+                    <form onSubmit={this.handleDelete}>
+                        <label>
+                            Delete student
+                            <input onChange={this.handleChange} id="delete" placeholder="enter id to be deleted"></input>
+                        </label>
+                        <button>Delete</button>
+                        {this.state.deleted ? <p>{`Id ${this.state.deleteId} has been removed`}</p> : <></>}
+                    </form>
                 </div>    
             </>
         );
@@ -64,21 +74,25 @@ class StudentList extends Component {
 
 
     handleChange = (event) => {
+        if (event.target.id === 'delete') {
+            this.setState(() => {
+                return { deleteId: event.target.value, deleted: false };
+            });
+        }
         if (event.target.id === 'startingCohort') {
             this.setState((currentState) => {
-                return { postStudentData : {...currentState.postStudentData, [event.target.id]: Number(event.target.value)}}
+                return { postStudentData: { ...currentState.postStudentData, [event.target.id]: Number(event.target.value) }, newStudent: { name: null } };
             })
         } else {
             this.setState((currentState) => {
-                return { postStudentData : {...currentState.postStudentData, [event.target.id]: event.target.value}}
+                return { postStudentData: { ...currentState.postStudentData, [event.target.id]: event.target.value }, newStudent: { name: null } };
             })
         }
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(JSON.stringify(this.state.postStudentData))
-        fetch('https://nc-student-tracker.herokuapp.com/api/students', {method: 'POST',headers: {'Content-Type': 'application/json'}, body: JSON.stringify(this.state.postStudentData)})
+        fetch('https://nc-student-tracker.herokuapp.com/api/students', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(this.state.postStudentData)})
         .then((res) => {
             return res.json()
         })
@@ -87,6 +101,16 @@ class StudentList extends Component {
                 return {'newStudent': {'name': name, 'id': _id, 'currentBlock': currentBlock}, submitted: true}
             })
         })
+    }
+
+    handleDelete = (event) => {
+        event.preventDefault()
+        fetch(`https://nc-student-tracker.herokuapp.com/api/students/${this.state.deleteId}`, { method: 'DELETE' })
+            .then(() => {
+                this.setState(() => {
+                    return { submitted: true, deleted: true }
+                });
+            });
     }
 
     convertBlock = (str) => {
