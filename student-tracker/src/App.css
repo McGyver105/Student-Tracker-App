@@ -10,16 +10,12 @@ body {
 }
 
 .nyanCat {
+  padding-top: 100px;
   width: 40px;
 }
 
-.block {
-  display: flex;
-  justify-content: space-around;
-}
-
 .block-list-container {
-  width: 23%;
+  width: 100%;
 }
 
 ul {
@@ -51,4 +47,76 @@ li {
 
 .grad-emoji {
   margin-left: 10px;
+}
+
+.linkButton {
+  background-color: rgb(223, 222, 222);
+  border: black 2px solid;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 2px;
+  font-size: 10px;
+  font-family: monospace;
+  text-decoration: none;
+}
+
+.buttonsContainer {
+  padding-top: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .block {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .block-list-container {
+    width: 23%;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    border: 2px black solid;
+    border-radius: 12px;
+    margin: 0 auto;
+    background-color: white;
+  }
+
+  .blockListHeader {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  li {
+    padding: 5px 0px;
+  }
+
+  .all-students-container {
+    width: 23%;
+  }
+
+  .grad-list-container {
+    width: 23%;
+  }
+
+  .grad-emoji {
+    margin-left: 10px;
+  }
+
+  .linkButton {
+    background-color: rgb(223, 222, 222);
+    border: black 2px solid;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 2px;
+    font-size: 12px;
+    font-family: monospace;
+    text-decoration: none;
+  }
+
+  .buttonsContainer {
+    padding-top: 10px;
+  }
 }

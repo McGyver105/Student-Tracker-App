@@ -2,7 +2,7 @@ import React from 'react';
 
 const Buttons = (props) => {
     return (
-        <div>
+        <div className="buttonsContainer">
             <button id='be' onClick={props.handleClick}>Show Backend Students</button>
             <button id='fe' onClick={props.handleClick}>Show Frontend Students</button>
             <button id='fun' onClick={props.handleClick}>Show Fundamentals Students</button>
