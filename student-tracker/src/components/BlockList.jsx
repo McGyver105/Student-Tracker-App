@@ -4,6 +4,7 @@ const Blocklist = (props) => {
     return (
         <div className="block-list-container">
             <header className='blockListHeader' >{props.header}</header>
+            <p>Total Students {props.students.length}</p>
             <ul>{props.students.map((student) => {
                 return <li key={student._id}>{student.name}</li>;
             })}</ul>

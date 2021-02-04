@@ -21,6 +21,7 @@ class Graduates extends Component {
             return (
                 <>
                 <h2>All Graduates</h2>
+                <p>Total Graduates {this.state.students.length}</p>
                 <ul className='grad-list-container'>
                     {this.state.students.map((student) => {
                         return <li key={student._id}>{student.name}<span className='grad-emoji'>🎓</span></li>
