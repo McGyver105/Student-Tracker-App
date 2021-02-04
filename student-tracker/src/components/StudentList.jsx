@@ -20,7 +20,6 @@ class StudentList extends Component {
 
     componentDidUpdate() {
         if (this.state.submitted) {
-            console.log('updating')
             api.fetchStudents()
             .then((res) => {
                 this.setState(() => {
@@ -31,7 +30,6 @@ class StudentList extends Component {
     }
 
     render () {
-        console.log(this.state.deleteId)
         if (!this.state.students) {
             return <img className='nyanCat' src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif?w=700" alt="nyan cat"/>
         }
