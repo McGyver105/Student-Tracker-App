@@ -23,7 +23,6 @@ class StudentList extends Component {
 
 
     render () {
-        console.log(this.state.students)
         if (!this.state.students) {
             return <img className='nyanCat' src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif?w=700" alt="nyan cat"/>
         }
@@ -78,10 +77,10 @@ class StudentList extends Component {
         event.preventDefault()
         fetch(`https://nc-student-tracker.herokuapp.com/api/students/${this.state.deleteId}`, { method: 'DELETE' })
             .then(() => {
-                this.setState(() => {
-                    return { submitted: true, deleted: true, deleteId: ''}
+                this.setState(({students, deleteId}) => {
+                    return { submitted: true, deleted: true, deleteId: '', students: api.removeStudentFromState(students, deleteId) };
                 });
-            });
+            })
     }
 
     convertBlock = (str) => {
@@ -96,6 +95,7 @@ class StudentList extends Component {
           };
         })
     }
+
 }
 
 export default StudentList;
