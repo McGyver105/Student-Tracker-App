@@ -4,4 +4,4 @@ This is a project that I've been undertaking alongside Keiran Cookson from the N
 
 The frontend section of this app interacts with a backend hosted on heroku and allows users to see a mock student tracker allowing people to access data on trainees enrolled on a course.
 
-Feel free to add and delete names as you want. The design of the page is still a work in progress as we've mainly been focusing on the functionality before making it look pretty.
+Hopefully in the coming weeks I'll be able to get this hosted live allowing users to interact with the site. The design of the page itself is still a work in progress as we've mainly been focusing on the functionality before making it look pretty. Once we've got all the features included, time will be spent created a responsive css that is accessible on both desktop and mobile screens.
