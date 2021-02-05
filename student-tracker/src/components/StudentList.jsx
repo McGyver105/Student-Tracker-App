@@ -8,7 +8,7 @@ class StudentList extends Component {
     state={
         students: null,
         postStudentData : {name: '', startingCohort: ''},
-        newStudent: { name: null, id: null, currentBlock: null },
+        newStudent: { name: null, _id: null, currentBlock: null, startingCohort: null },
         submitted: false,
         deleteId: '',
         deleted: false
@@ -21,18 +21,9 @@ class StudentList extends Component {
         }))
     }
 
-    componentDidUpdate() {
-        if (this.state.submitted) {
-            api.fetchStudents()
-            .then((res) => {
-                this.setState(() => {
-                  return {...res, submitted: false}  
-                })
-            })
-        }
-    }
 
     render () {
+        console.log(this.state.students)
         if (!this.state.students) {
             return <img className='nyanCat' src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif?w=700" alt="nyan cat"/>
         }
@@ -73,10 +64,13 @@ class StudentList extends Component {
         .then((res) => {
             return res.json()
         })
-        .then(({student:{name, _id, currentBlock}}) => {
-            this.setState(() => {
-                return {'newStudent': {'name': name, 'id': _id, 'currentBlock': currentBlock}, submitted: true, postStudentData : {name: '', startingCohort: ''}}
+        .then(({student:{name, _id, currentBlock, startingCohort}}) => {
+            this.setState((currentState) => {
+                return {'newStudent': {'name': name, '_id': _id, 'currentBlock': currentBlock, 'startingCohort': startingCohort}, submitted: true, postStudentData : {name: '', startingCohort: ''}}
             })
+        })
+        .then(() => {
+            this.addStudentToState(this.state.newStudent)
         })
     }
 
@@ -93,6 +87,14 @@ class StudentList extends Component {
     convertBlock = (str) => {
         const lookupObj = {'fun': 'Fundamentals', 'be': 'Backend', 'fe': 'Frontend', 'proj': 'Project'}
         return lookupObj[str]
+    }
+
+    addStudentToState = (addingStudent) => {
+         this.setState((currentState) => {
+             return {
+                 students: [addingStudent, ...currentState.students]
+          };
+        })
     }
 }
 

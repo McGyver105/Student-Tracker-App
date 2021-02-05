@@ -1,6 +1,7 @@
 import React from 'react';
 
 const AddStudentForm = ({handleChange, handleSubmit, state, convertBlock}) => {
+   
     return (
         <form className='newStudentForm' onSubmit={handleSubmit}>
             <label>
@@ -14,7 +15,7 @@ const AddStudentForm = ({handleChange, handleSubmit, state, convertBlock}) => {
                 </input>
             </label>
                 <button>Submit</button>
-                {state.newStudent.name ? <p>{`${state.newStudent.name} created with an id of ${state.newStudent.id} in the ${convertBlock(state.newStudent.currentBlock)} block`}</p> : <> </>}
+                {state.newStudent.name ? <p>{`${state.newStudent.name} created with an id of ${state.newStudent._id} in the ${convertBlock(state.newStudent.currentBlock)} block`}</p> : <> </>}
         </form>
     );
 };
