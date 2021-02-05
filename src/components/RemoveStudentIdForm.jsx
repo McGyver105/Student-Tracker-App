@@ -2,12 +2,12 @@ import React from 'react';
 
 const RemoveStudentIdForm = ({handleDelete, state, handleChange}) => {
     return (
-        <form onSubmit={handleDelete}>
-        <label>
+        <form className='newForm' onSubmit={handleDelete}>
+        <label className='label-text'>
             Delete student
-            <input value={state.deleteId} onChange={handleChange} id="delete" placeholder="enter id to be deleted"></input>
+            <input className='input-button' value={state.deleteId} onChange={handleChange} id="delete" placeholder="enter id to be deleted"></input>
         </label>
-        <button>Delete</button>
+        <button className='submit-button'>Delete</button>
         {state.deleted ? <p>{`Id has been removed`}</p> : <></>}
     </form>
     );
